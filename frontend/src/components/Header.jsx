@@ -7,7 +7,6 @@ import {
   XIcon
 } from '@heroicons/react/outline';
 import { useCart } from '../context/CartContext';
-import shoporaLogo from '../assets/shopora.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,11 +38,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center">
-            <img
-              src="/shopora.png"
-              alt="SHOPORA"
-              className="h-8 w-auto transition-transform duration-200 hover:scale-105"
-            />
+            <span className="text-xl font-bold text-minimal-dark transition-transform duration-200 hover:scale-105">
+              SHOPORA
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

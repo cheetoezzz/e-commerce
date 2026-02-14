@@ -18,17 +18,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h2 className="text-2xl font-bold mb-4">Minimal</h2>
-            <p className="text-gray-300 mb-6 max-w-md">
-              Discover carefully curated products that blend form and function.
-              Every piece tells a story of simplicity and elegance.
-            </p>
+            <h2 className="text-2xl font-bold mb-4">SHOPORA</h2>
 
             {/* Contact Info */}
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
                 <MailIcon className="h-5 w-5 mr-3" />
-                <span>hello@minimal.com</span>
+                <span>shopora@email.com</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <PhoneIcon className="h-5 w-5 mr-3" />
@@ -156,7 +152,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-gray-300 text-sm">
-              <p>&copy; {currentYear} Minimal. All rights reserved.</p>
+              <p>&copy; 2026 SHOPORA. All rights reserved.</p>
             </div>
           </div>
         </div>

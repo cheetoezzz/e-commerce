@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import ProductFilters from './components/ProductFiltersInline.jsx';
+import shoporaLogo from './assets/shopora.png';
 
 const PRODUCT_PLACEHOLDER_IMG = 'http://localhost:5000/api/images/placeholder';
 
@@ -293,8 +294,8 @@ const styles = {
     cursor: 'pointer',
   },
   footer: {
-    backgroundColor: '#1a1a1a',
-    color: 'white',
+    backgroundColor: '#f8f9fa',
+    color: '#1a1a1a',
     padding: '48px 16px',
   },
   footerContent: {
@@ -308,7 +309,7 @@ const styles = {
     marginBottom: '16px',
   },
   footerText: {
-    color: '#d1d5db',
+    color: '#6b7280',
     marginBottom: '32px',
     lineHeight: '1.5',
   },
@@ -576,7 +577,20 @@ const Header = () => {
   return (
     <header style={styles.header}>
       <div style={styles.headerContent}>
-        <Link to="/" style={styles.logo}>Minimal</Link>
+        <Link to="/" style={styles.logo}>
+          <img
+            src={shoporaLogo}
+            alt="SHOPORA"
+            style={{
+              height: '64px',
+              width: 'auto',
+              transition: 'transform 0.2s',
+              cursor: 'pointer'
+            }}
+            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+          />
+        </Link>
         <nav style={styles.nav}>
           <Link to="/" style={styles.navLink}>Home</Link>
           <Link to="/shop" style={styles.navLink}>Shop</Link>
@@ -1022,13 +1036,19 @@ const Cart = () => {
 const Footer = () => (
   <footer style={styles.footer}>
     <div style={styles.footerContent}>
-      <h2 style={styles.footerLogo}>Minimal</h2>
-      <p style={styles.footerText}>
-        Discover carefully curated products that blend form and function.
-        Every piece tells a story of simplicity and elegance.
-      </p>
+      <div style={{ ...styles.footerLogo, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <img
+          src={shoporaLogo}
+          alt="SHOPORA"
+          style={{
+            height: '120px',
+            width: 'auto',
+            marginBottom: '24px'
+          }}
+        />
+      </div>
       <p style={styles.footerCopyright}>
-        &copy; 2024 Minimal. All rights reserved.
+        &copy; 2026 SHOPORA. All rights reserved.
       </p>
     </div>
   </footer>
