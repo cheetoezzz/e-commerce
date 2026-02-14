@@ -40,7 +40,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center">
             <img
-              src={shoporaLogo}
+              src="/shopora.png"
               alt="SHOPORA"
               className="h-8 w-auto transition-transform duration-200 hover:scale-105"
             />
