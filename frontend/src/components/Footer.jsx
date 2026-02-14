@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FacebookIcon,
-  TwitterIcon,
-  InstagramIcon,
-  MailIcon,
-  PhoneIcon,
-  MapPinIcon
-} from '@heroicons/react/outline';
+  FiFacebook,
+  FiTwitter,
+  FiInstagram,
+  FiMail,
+  FiPhone,
+  FiMapPin
+} from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,15 +23,15 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
-                <MailIcon className="h-5 w-5 mr-3" />
+                <FiMail className="h-5 w-5 mr-3" />
                 <span>shopora@email.com</span>
               </div>
               <div className="flex items-center text-gray-300">
-                <PhoneIcon className="h-5 w-5 mr-3" />
+                <FiPhone className="h-5 w-5 mr-3" />
                 <span>+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center text-gray-300">
-                <MapPinIcon className="h-5 w-5 mr-3" />
+                <FiMapPin className="h-5 w-5 mr-3" />
                 <span>123 Design Street, Creative City, CC 12345</span>
               </div>
             </div>
@@ -130,7 +130,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >
-                <FacebookIcon className="h-6 w-6" />
+                <FiFacebook className="h-6 w-6" />
               </a>
               <a
                 href="https://twitter.com"
@@ -138,7 +138,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >
-                <TwitterIcon className="h-6 w-6" />
+                <FiTwitter className="h-6 w-6" />
               </a>
               <a
                 href="https://instagram.com"
@@ -146,7 +146,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
               >
-                <InstagramIcon className="h-6 w-6" />
+                <FiInstagram className="h-6 w-6" />
               </a>
             </div>
 

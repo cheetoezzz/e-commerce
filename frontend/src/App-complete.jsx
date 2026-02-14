@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight, FiCheckCircle } from 'react-icons/fi';
 import ProductFilters from './components/ProductFiltersInline.jsx';
 import shoporaLogo from './assets/shopora.png';
 
@@ -240,7 +240,7 @@ const styles = {
   },
   productGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 280px))',
     gap: '24px',
     marginBottom: '64px',
   },
@@ -316,6 +316,25 @@ const styles = {
   footerCopyright: {
     color: '#9ca3af',
     fontSize: '14px',
+  },
+  inputField: {
+    width: '100%',
+    padding: '12px 16px',
+    border: '1px solid #9ca3af',
+    borderRadius: '8px',
+    fontSize: '16px',
+    fontFamily: 'Inter, system-ui, sans-serif',
+    backgroundColor: '#ffffff',
+    color: '#1a1a1a',
+    transition: 'all 0.2s ease',
+    outline: 'none',
+    '&:focus': {
+      borderColor: '#3b82f6',
+      backgroundColor: '#fafbff'
+    },
+    '&:hover': {
+      borderColor: '#6b7280'
+    }
   },
   loading: {
     textAlign: 'center',
@@ -437,6 +456,7 @@ const styles = {
     borderTop: '1px solid #e5e7eb',
     paddingTop: '16px',
     marginTop: '16px',
+    marginBottom: '24px',
   },
   checkoutBtn: {
     width: '100%',
@@ -499,15 +519,18 @@ const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product) => {
+    console.log('Adding to cart:', product);
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product._id);
       if (existingItem) {
+        console.log('Updating existing item quantity');
         return prevItems.map(item =>
           item.id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
+      console.log('Adding new item to cart');
       return [...prevItems, {
         id: product._id,
         name: product.name,
@@ -767,6 +790,7 @@ const HeroSlider = () => {
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalImage, setModalImage] = useState(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -781,6 +805,14 @@ const Home = () => {
         setLoading(false);
       });
   }, []);
+
+  const openModal = (imageSrc, alt) => {
+    setModalImage({ src: imageSrc, alt });
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
+  };
 
   if (loading) {
     return (
@@ -802,8 +834,9 @@ const Home = () => {
                 <img
                   src={getProductImageSrc(product)}
                   alt={product.name}
-                  style={styles.productImage}
+                  style={{ ...styles.productImage, cursor: 'pointer' }}
                   loading="lazy"
+                  onClick={() => openModal(getProductImageSrc(product), product.name)}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = PRODUCT_PLACEHOLDER_IMG;
@@ -826,6 +859,69 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {modalImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            cursor: 'pointer'
+          }}
+          onClick={closeModal}
+        >
+          <div
+            style={{
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={modalImage.src}
+              alt={modalImage.alt}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)'
+              }}
+            />
+            <button
+              onClick={closeModal}
+              style={{
+                position: 'absolute',
+                top: '-40px',
+                right: '0',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: 'bold'
+              }}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -834,6 +930,7 @@ const Home = () => {
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalImage, setModalImage] = useState(null);
   const [filters, setFilters] = useState({
     category: ''
   });
@@ -882,6 +979,14 @@ const Shop = () => {
     setSearchQuery(e.target.value);
   };
 
+  const openModal = (imageSrc, alt) => {
+    setModalImage({ src: imageSrc, alt });
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
+  };
+
   if (loading) {
     return (
       <div style={styles.pageContainer}>
@@ -907,8 +1012,9 @@ const Shop = () => {
             <img
               src={getProductImageSrc(product)}
               alt={product.name}
-              style={styles.productImage}
+              style={{ ...styles.productImage, cursor: 'pointer' }}
               loading="lazy"
+              onClick={() => openModal(getProductImageSrc(product), product.name)}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = PRODUCT_PLACEHOLDER_IMG;
@@ -929,6 +1035,69 @@ const Shop = () => {
           </div>
         ))}
       </div>
+
+      {/* Image Modal */}
+      {modalImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+            cursor: 'pointer'
+          }}
+          onClick={closeModal}
+        >
+          <div
+            style={{
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={modalImage.src}
+              alt={modalImage.alt}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: '8px',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)'
+              }}
+            />
+            <button
+              onClick={closeModal}
+              style={{
+                position: 'absolute',
+                top: '-40px',
+                right: '0',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: 'bold'
+              }}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -968,7 +1137,7 @@ const Cart = () => {
       <div style={styles.cartItems}>
         {cartItems.map((item, index) => (
           <div
-            key={item.id}
+            key={item.id || index}
             style={index === cartItems.length - 1 ? styles.cartItemLast : styles.cartItem}
           >
             <img
@@ -1024,9 +1193,259 @@ const Cart = () => {
           <span>Total</span>
           <span>${totalPrice.toFixed(2)}</span>
         </div>
-        <button style={styles.checkoutBtn}>
+        <Link to="/checkout" style={styles.checkoutBtn}>
           Proceed to Checkout
-        </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+// Checkout Page
+const Checkout = () => {
+  const { cartItems, getTotalPrice, clearCart } = useCart();
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: ''
+  });
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderId, setOrderId] = useState('');
+
+  const totalPrice = getTotalPrice();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Generate order ID
+    const newOrderId = 'ORD-' + Date.now();
+    setOrderId(newOrderId);
+    setOrderPlaced(true);
+    clearCart();
+  };
+
+  if (orderPlaced) {
+    return (
+      <div style={styles.pageContainer}>
+        <div style={{ textAlign: 'center', padding: '40px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ fontSize: '48px', marginBottom: '20px', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <FiCheckCircle />
+          </div>
+          <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '16px' }}>
+            Order Placed Successfully!
+          </h1>
+          <p style={{ fontSize: '18px', color: '#6b7280', marginBottom: '24px' }}>
+            Thank you for your order. Your order ID is: <strong>{orderId}</strong>
+          </p>
+          <Link to="/" style={{ ...styles.checkoutBtn, maxWidth: '200px', width: 'auto', margin: '0 auto' }}>
+            Continue Shopping
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={styles.pageContainer}>
+      <h1 style={{ fontSize: '32px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '32px' }}>
+        Checkout
+      </h1>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '40px', alignItems: 'start' }}>
+        {/* Checkout Form */}
+        <div>
+          <form onSubmit={handleSubmit}>
+            {/* Billing Information */}
+            <div style={{ marginBottom: '32px' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '16px' }}>
+                Billing Information
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+              <div style={{ marginTop: '16px' }}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+              <div style={{ marginTop: '16px' }}>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+            </div>
+
+            {/* Shipping Address */}
+            <div style={{ marginBottom: '32px' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '16px' }}>
+                Shipping Address
+              </h2>
+              <input
+                type="text"
+                name="address"
+                placeholder="Street Address"
+                value={formData.address}
+                onChange={handleInputChange}
+                required
+                style={styles.inputField}
+              />
+              <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', marginTop: '16px' }}>
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+                <input
+                  type="text"
+                  name="state"
+                  placeholder="State"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+              <div style={{ marginTop: '16px' }}>
+                <input
+                  type="text"
+                  name="zipCode"
+                  placeholder="ZIP Code"
+                  value={formData.zipCode}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+            </div>
+
+            {/* Payment Information */}
+            <div style={{ marginBottom: '32px' }}>
+              <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '16px' }}>
+                Payment Information
+              </h2>
+              <input
+                type="text"
+                name="cardNumber"
+                placeholder="Card Number"
+                value={formData.cardNumber}
+                onChange={handleInputChange}
+                required
+                style={styles.inputField}
+              />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+                <input
+                  type="text"
+                  name="expiryDate"
+                  placeholder="MM/YY"
+                  value={formData.expiryDate}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+                <input
+                  type="text"
+                  name="cvv"
+                  placeholder="CVV"
+                  value={formData.cvv}
+                  onChange={handleInputChange}
+                  required
+                  style={styles.inputField}
+                />
+              </div>
+            </div>
+
+            <button type="submit" style={styles.checkoutBtn}>
+              Place Order
+            </button>
+          </form>
+        </div>
+
+        {/* Order Summary */}
+        <div style={styles.cartSummary}>
+          <h2 style={styles.summaryTitle}>Order Summary</h2>
+
+          {cartItems.map((item) => (
+            <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <img
+                  src={getProductImageSrc(item)}
+                  alt={item.name}
+                  style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }}
+                />
+                <div>
+                  <p style={{ fontSize: '14px', fontWeight: '500', color: '#1a1a1a' }}>{item.name}</p>
+                  <p style={{ fontSize: '12px', color: '#6b7280' }}>Qty: {item.quantity}</p>
+                </div>
+              </div>
+              <p style={{ fontSize: '14px', fontWeight: '500', color: '#1a1a1a' }}>
+                ${(item.price * item.quantity).toFixed(2)}
+              </p>
+            </div>
+          ))}
+
+          <div style={{ borderTop: '1px solid #e5e7eb', margin: '16px 0' }}></div>
+
+          <div style={styles.summaryRow}>
+            <span>Subtotal ({cartItems.reduce((total, item) => total + item.quantity, 0)} items)</span>
+            <span>${totalPrice.toFixed(2)}</span>
+          </div>
+          <div style={styles.summaryRow}>
+            <span>Shipping</span>
+            <span>Free</span>
+          </div>
+          <div style={styles.summaryTotal}>
+            <span>Total</span>
+            <span>${totalPrice.toFixed(2)}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1041,9 +1460,9 @@ const Footer = () => (
           src={shoporaLogo}
           alt="SHOPORA"
           style={{
-            height: '120px',
+            height: '160px',
             width: 'auto',
-            marginBottom: '24px'
+            marginBottom: '8px'
           }}
         />
       </div>
@@ -1065,6 +1484,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Routes>
           </main>
           <Footer />

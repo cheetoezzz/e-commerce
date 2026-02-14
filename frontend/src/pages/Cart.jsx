@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  MinusIcon, 
-  PlusIcon, 
-  XIcon,
-  ArrowRightIcon,
-  ShoppingBagIcon
-} from '@heroicons/react/outline';
+import {
+  FiMinus,
+  FiPlus,
+  FiX,
+  FiArrowRight,
+  FiShoppingBag
+} from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
@@ -56,7 +56,7 @@ const Cart = () => {
               Your Cart is Empty
             </h1>
             <p className="text-gray-600 mb-8 max-w-md mx-auto">
-              Looks like you haven't added any products to your cart yet. 
+              Looks like you haven't added any products to your cart yet.
               Start shopping to fill it up!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -152,7 +152,7 @@ const Cart = () => {
                             <PlusIcon className="h-4 w-4" />
                           </button>
                         </div>
-                        
+
                         <span className="text-sm text-gray-600">
                           Subtotal: {formatPrice(item.price * item.quantity)}
                         </span>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { 
-  AdjustmentsIcon, 
-  ChevronDownIcon, 
-  XIcon 
-} from '@heroicons/react/outline';
+import {
+  FiSettings,
+  FiChevronDown,
+  FiX
+} from 'react-icons/fi';
 import apiService from '../services/api';
 import ProductGrid from '../components/ProductGrid';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -12,7 +12,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const Shop = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        
+
         // Build query parameters
         const params = {
           page: currentPage,
@@ -60,7 +60,7 @@ const Shop = () => {
         setProducts(productsResponse.products || []);
         setPagination(productsResponse.pagination);
         setCategories(categoriesResponse.categories || []);
-        
+
         if (priceRangeResponse) {
           setPriceRange({
             min: Math.floor(priceRangeResponse.minPrice),
@@ -81,7 +81,7 @@ const Shop = () => {
   // Update URL when filters change
   useEffect(() => {
     const params = new URLSearchParams();
-    
+
     if (selectedCategory) params.set('category', selectedCategory);
     if (searchQuery) params.set('search', searchQuery);
     if (sortBy !== 'createdAt') params.set('sortBy', sortBy);
@@ -92,7 +92,7 @@ const Shop = () => {
 
     const newParams = params.toString();
     const newPath = newParams ? `${location.pathname}?${newParams}` : location.pathname;
-    
+
     if (newPath !== location.pathname + location.search) {
       setSearchParams(params);
     }
@@ -100,7 +100,7 @@ const Shop = () => {
 
   const handleFilterChange = (filterType, value) => {
     setCurrentPage(1); // Reset to first page when filters change
-    
+
     switch (filterType) {
       case 'category':
         setSelectedCategory(value);
@@ -154,7 +154,7 @@ const Shop = () => {
               className="lg:hidden w-full flex items-center justify-between p-4 bg-white rounded-lg shadow-sm mb-4"
             >
               <span className="font-medium">Filters</span>
-              <AdjustmentsIcon className="h-5 w-5" />
+              <FiSettings className="h-5 w-5" />
             </button>
 
             {/* Filters */}
@@ -256,9 +256,9 @@ const Shop = () => {
 
           {/* Products */}
           <div className="flex-1">
-            <ProductGrid 
-              products={products} 
-              loading={loading} 
+            <ProductGrid
+              products={products}
+              loading={loading}
               error={error}
             />
 
@@ -273,21 +273,20 @@ const Shop = () => {
                   >
                     Previous
                   </button>
-                  
+
                   {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((page) => (
                     <button
                       key={page}
                       onClick={() => handlePageChange(page)}
-                      className={`px-3 py-2 rounded-lg border transition-colors ${
-                        page === pagination.currentPage
-                          ? 'bg-minimal-dark text-white border-minimal-dark'
-                          : 'border-minimal-border hover:bg-minimal-gray'
-                      }`}
+                      className={`px-3 py-2 rounded-lg border transition-colors ${page === pagination.currentPage
+                        ? 'bg-minimal-dark text-white border-minimal-dark'
+                        : 'border-minimal-border hover:bg-minimal-gray'
+                        }`}
                     >
                       {page}
                     </button>
                   ))}
-                  
+
                   <button
                     onClick={() => handlePageChange(pagination.currentPage + 1)}
                     disabled={!pagination.hasNext}

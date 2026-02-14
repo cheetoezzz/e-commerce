@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRightIcon, StarIcon } from '@heroicons/react/solid';
-import { ShoppingCartIcon } from '@heroicons/react/outline';
+import { FiArrowRight, FiStar } from 'react-icons/fi';
 import apiService from '../services/api';
 import ProductGrid from '../components/ProductGrid';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -16,7 +15,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch featured products and categories in parallel
         const [productsResponse, categoriesResponse] = await Promise.all([
           apiService.getFeaturedProducts(8),
@@ -55,7 +54,7 @@ const Home = () => {
               Maximum Impact
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Discover carefully curated products that blend form and function. 
+              Discover carefully curated products that blend form and function.
               Every piece tells a story of simplicity and elegance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -159,7 +158,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-minimal-dark rounded-full flex items-center justify-center mx-auto mb-4">
-                <ShoppingCartIcon className="h-8 w-8 text-white" />
+                <FiShoppingBag className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-minimal-dark mb-2">
                 Free Shipping
@@ -168,28 +167,28 @@ const Home = () => {
                 On orders over $50. Fast and reliable delivery to your doorstep.
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-minimal-dark rounded-full flex items-center justify-center mx-auto mb-4">
-                <StarIcon className="h-8 w-8 text-white" />
+                <FiStar className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-minimal-dark mb-2">
                 Quality Guaranteed
               </h3>
               <p className="text-gray-600">
-                Every product is carefully selected and quality-checked.
+                Premium materials and craftsmanship you can trust.
               </p>
             </div>
-            
+
             <div className="text-center">
               <div className="w-16 h-16 bg-minimal-dark rounded-full flex items-center justify-center mx-auto mb-4">
-                <ArrowRightIcon className="h-8 w-8 text-white" />
+                <FiArrowRight className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold text-minimal-dark mb-2">
                 Easy Returns
               </h3>
               <p className="text-gray-600">
-                30-day return policy. Shop with confidence.
+                30-day return policy for your peace of mind.
               </p>
             </div>
           </div>

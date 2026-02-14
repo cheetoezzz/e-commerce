@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  ShoppingBagIcon,
-  SearchIcon,
-  MenuIcon,
-  XIcon
-} from '@heroicons/react/outline';
+  FiShoppingBag,
+  FiSearch,
+  FiMenu,
+  FiX
+} from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 
 const Header = () => {
@@ -66,12 +66,12 @@ const Header = () => {
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="p-2 text-gray-600 hover:text-minimal-dark transition-colors duration-200"
             >
-              <SearchIcon className="h-5 w-5" />
+              <FiSearch className="h-5 w-5" />
             </button>
 
             {/* Cart */}
             <Link to="/cart" className="relative p-2 text-gray-600 hover:text-minimal-dark transition-colors duration-200">
-              <ShoppingBagIcon className="h-5 w-5" />
+              <FiShoppingBag className="h-5 w-5" />
               {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 h-5 w-5 bg-minimal-dark text-white text-xs rounded-full flex items-center justify-center">
                   {totalItems > 99 ? '99+' : totalItems}
@@ -84,7 +84,7 @@ const Header = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-gray-600 hover:text-minimal-dark transition-colors duration-200"
             >
-              {isMenuOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+              {isMenuOpen ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
             </button>
           </div>
         </div>
