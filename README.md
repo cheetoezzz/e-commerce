@@ -2,26 +2,7 @@
 
 A modern, minimalist full-stack e-commerce website built with React, Node.js, and MongoDB. This project demonstrates professional frontend and backend development skills with a focus on clean architecture, performance, and exceptional UI/UX design.
 
-## 🚀 Features
-
-### Core Functionality
-- **Product Browsing**: Browse products with filtering, search, and sorting
-- **Shopping Cart**: Add/remove items, update quantities with LocalStorage persistence
-- **Product Details**: Detailed product pages with image galleries and specifications
-- **Checkout Flow**: Complete checkout process with form validation
-- **Category Navigation**: Shop by category with product counts
-- **Search**: Full-text search across products
-- **Responsive Design**: Mobile-first design that works on all devices
-
-### Technical Features
-- **State Management**: React Context API with LocalStorage persistence
-- **API Integration**: RESTful API with proper error handling
-- **Loading States**: Skeleton loaders and smooth transitions
-- **Form Validation**: Client-side validation with error messages
-- **SEO Ready**: Semantic HTML5 and meta tags
-- **Performance**: Lazy loading images and optimized components
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18** - UI framework
@@ -40,7 +21,7 @@ A modern, minimalist full-stack e-commerce website built with React, Node.js, an
 - **Helmet** - Security middleware
 - **Compression** - Response compression
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 e-commerce/
@@ -172,11 +153,6 @@ e-commerce/
 6. Fill in shipping and payment information
 7. Complete the purchase
 
-### Admin Features
-- Product management through API endpoints
-- Category management
-- Database seeding for development
-
 ## 🔧 API Endpoints
 
 ### Products
@@ -192,9 +168,6 @@ e-commerce/
 - `GET /api/categories/:slug` - Get single category by slug
 - `GET /api/categories/:slug/products` - Get products in a category
 
-### Health Check
-- `GET /api/health` - API health check
-
 ## 🎨 Design System
 
 ### Color Palette
@@ -204,12 +177,6 @@ e-commerce/
 - **White**: `#ffffff`
 - **Success Green**: `#10b981`
 - **Error Red**: `#ef4444`
-
-### Typography
-- **Font Family**: Inter (Google Fonts)
-- **Weights**: 300, 400, 500, 600, 700
-- **Headings**: Bold with proper hierarchy
-- **Body Text**: Regular weight with good readability
 
 ### Components
 - **Buttons**: Primary and secondary variants
