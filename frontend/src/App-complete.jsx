@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight, FiCheckCircle } from 'react-icons/fi';
+import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight, FiCheckCircle, FiFacebook, FiTwitter, FiInstagram, FiLinkedin, FiYoutube, FiMail, FiPhone, FiMapPin, FiClock, FiMessageSquare } from 'react-icons/fi';
 import ProductFilters from './components/ProductFiltersInline.jsx';
 import shoporaLogo from './assets/shopora.png';
 
@@ -294,24 +294,90 @@ const styles = {
     cursor: 'pointer',
   },
   footer: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#e5e7eb',
     color: '#1a1a1a',
     padding: '48px 16px',
   },
   footerContent: {
     maxWidth: '1280px',
     margin: '0 auto',
-    textAlign: 'center',
+  },
+  footerGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '32px',
+    marginBottom: '48px',
+  },
+  footerSection: {
+    marginBottom: '24px',
+  },
+  footerTitle: {
+    fontSize: '18px',
+    fontWeight: '600',
+    marginBottom: '16px',
+    color: '#1a1a1a',
   },
   footerLogo: {
     fontSize: '24px',
     fontWeight: 'bold',
+    marginTop: '32px',
     marginBottom: '16px',
+    color: '#1a1a1a',
+    textAlign: 'center',
   },
-  footerText: {
+  contactItem: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '12px',
+    color: '#4b5563',
+  },
+  contactIcon: {
+    width: '20px',
+    height: '20px',
+    marginRight: '12px',
     color: '#6b7280',
-    marginBottom: '32px',
-    lineHeight: '1.5',
+  },
+  linkList: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+  },
+  linkItem: {
+    marginBottom: '8px',
+  },
+  footerLink: {
+    color: '#4b5563',
+    textDecoration: 'none',
+    fontSize: '14px',
+    transition: 'color 0.2s ease',
+    '&:hover': {
+      color: '#1a1a1a',
+    },
+  },
+  socialLinks: {
+    display: 'flex',
+    gap: '24px',
+    marginBottom: '24px',
+  },
+  socialLink: {
+    color: '#4b5563',
+    transition: 'color 0.2s ease',
+    '&:hover': {
+      color: '#1a1a1a',
+    },
+  },
+  socialIcon: {
+    width: '24px',
+    height: '24px',
+  },
+  footerBottom: {
+    borderTop: '1px solid #e5e7eb',
+    paddingTop: '24px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '16px',
   },
   footerCopyright: {
     color: '#9ca3af',
@@ -856,6 +922,34 @@ const Home = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <button
+              style={{
+                padding: '16px 32px',
+                backgroundColor: '#1a1a1a',
+                color: '#ffffff',
+                border: '2px solid #1a1a1a',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}
+              onClick={() => window.location.href = '/shop'}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = '#ffffff';
+                e.target.style.color = '#1a1a1a';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = '#1a1a1a';
+                e.target.style.color = '#ffffff';
+              }}
+            >
+              See All
+            </button>
           </div>
         </div>
       </div>
@@ -1455,20 +1549,158 @@ const Checkout = () => {
 const Footer = () => (
   <footer style={styles.footer}>
     <div style={styles.footerContent}>
-      <div style={{ ...styles.footerLogo, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <img
-          src={shoporaLogo}
-          alt="SHOPORA"
-          style={{
-            height: '160px',
-            width: 'auto',
-            marginBottom: '8px'
-          }}
-        />
+      <div style={styles.footerGrid}>
+        {/* Company Info */}
+        <div style={styles.footerSection}>
+          <div style={styles.footerLogo}>
+            <img
+              src={shoporaLogo}
+              alt="SHOPORA"
+              style={{
+                height: '120px',
+                width: 'auto',
+                marginBottom: '16px'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Contact Info */}
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>Contact Us</h3>
+          <div>
+            <div style={styles.contactItem}>
+              <FiMail style={styles.contactIcon} />
+              <span>support@shopora.com</span>
+            </div>
+            <div style={styles.contactItem}>
+              <FiPhone style={styles.contactIcon} />
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div style={styles.contactItem}>
+              <FiMapPin style={styles.contactIcon} />
+              <span>123 Design Street, Creative City, CC 12345</span>
+            </div>
+            <div style={styles.contactItem}>
+              <FiClock style={styles.contactIcon} />
+              <span>Mon-Fri: 9AM-6PM EST</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Customer Service */}
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>Customer Service</h3>
+          <ul style={styles.linkList}>
+            <li style={styles.linkItem}>
+              <Link to="/shipping" style={styles.footerLink}>Shipping & Returns</Link>
+            </li>
+            <li style={styles.linkItem}>
+              <Link to="/size-guide" style={styles.footerLink}>Size Guide</Link>
+            </li>
+            <li style={styles.linkItem}>
+              <Link to="/care" style={styles.footerLink}>Product Care</Link>
+            </li>
+            <li style={styles.linkItem}>
+              <Link to="/privacy" style={styles.footerLink}>Privacy Policy</Link>
+            </li>
+            <li style={styles.linkItem}>
+              <Link to="/terms" style={styles.footerLink}>Terms of Service</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>Stay Updated</h3>
+          <p style={{ color: '#4b5563', marginBottom: '16px', fontSize: '14px' }}>
+            Subscribe to our newsletter for exclusive offers and new product updates.
+          </p>
+          <div style={{ display: 'flex', gap: '8px', flexDirection: 'column', sm: { flexDirection: 'row' } }}>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              style={{
+                flex: 1,
+                padding: '12px 16px',
+                borderRadius: '8px',
+                border: '1px solid #d1d5db',
+                backgroundColor: '#ffffff',
+                color: '#1a1a1a',
+                fontSize: '14px',
+                outline: 'none',
+              }}
+            />
+            <button style={{
+              padding: '12px 24px',
+              backgroundColor: '#ffffff',
+              color: '#1a1a1a',
+              borderRadius: '8px',
+              fontWeight: '500',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '14px',
+              transition: 'background-color 0.2s ease',
+            }}>
+              Subscribe
+            </button>
+          </div>
+        </div>
       </div>
-      <p style={styles.footerCopyright}>
-        &copy; 2026 SHOPORA. All rights reserved.
-      </p>
+
+      {/* Social Media & Copyright */}
+      <div style={styles.footerBottom}>
+        <div style={styles.socialLinks}>
+          <a
+            href="https://facebook.com/shopora"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialLink}
+            aria-label="Facebook"
+          >
+            <FiFacebook style={styles.socialIcon} />
+          </a>
+          <a
+            href="https://twitter.com/shopora"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialLink}
+            aria-label="Twitter"
+          >
+            <FiTwitter style={styles.socialIcon} />
+          </a>
+          <a
+            href="https://instagram.com/shopora"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialLink}
+            aria-label="Instagram"
+          >
+            <FiInstagram style={styles.socialIcon} />
+          </a>
+          <a
+            href="https://linkedin.com/company/shopora"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialLink}
+            aria-label="LinkedIn"
+          >
+            <FiLinkedin style={styles.socialIcon} />
+          </a>
+          <a
+            href="https://youtube.com/shopora"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialLink}
+            aria-label="YouTube"
+          >
+            <FiYoutube style={styles.socialIcon} />
+          </a>
+        </div>
+        <div style={styles.footerCopyright}>
+          <p>&copy; 2026 SHOPORA. All rights reserved.</p>
+        </div>
+      </div>
     </div>
   </footer>
 );

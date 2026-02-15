@@ -4,9 +4,13 @@ import {
   FiFacebook,
   FiTwitter,
   FiInstagram,
+  FiLinkedin,
+  FiYoutube,
   FiMail,
   FiPhone,
-  FiMapPin
+  FiMapPin,
+  FiClock,
+  FiMessageSquare
 } from 'react-icons/fi';
 
 const Footer = () => {
@@ -24,7 +28,7 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center text-gray-300">
                 <FiMail className="h-5 w-5 mr-3" />
-                <span>shopora@email.com</span>
+                <span>support@shopora.com</span>
               </div>
               <div className="flex items-center text-gray-300">
                 <FiPhone className="h-5 w-5 mr-3" />
@@ -33,6 +37,14 @@ const Footer = () => {
               <div className="flex items-center text-gray-300">
                 <FiMapPin className="h-5 w-5 mr-3" />
                 <span>123 Design Street, Creative City, CC 12345</span>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <FiClock className="h-5 w-5 mr-3" />
+                <span>Mon-Fri: 9AM-6PM EST</span>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <FiMessageSquare className="h-5 w-5 mr-3" />
+                <span>Live Chat Available</span>
               </div>
             </div>
           </div>
@@ -43,7 +55,22 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to="/shop" className="text-gray-300 hover:text-white transition-colors">
-                  Shop
+                  Shop All
+                </Link>
+              </li>
+              <li>
+                <Link to="/new-arrivals" className="text-gray-300 hover:text-white transition-colors">
+                  New Arrivals
+                </Link>
+              </li>
+              <li>
+                <Link to="/bestsellers" className="text-gray-300 hover:text-white transition-colors">
+                  Bestsellers
+                </Link>
+              </li>
+              <li>
+                <Link to="/sale" className="text-gray-300 hover:text-white transition-colors">
+                  Sale
                 </Link>
               </li>
               <li>
@@ -54,6 +81,11 @@ const Footer = () => {
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-gray-300 hover:text-white transition-colors">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -125,28 +157,49 @@ const Footer = () => {
             {/* Social Media */}
             <div className="flex space-x-6 mb-4 md:mb-0">
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/shopora"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
+                aria-label="Facebook"
               >
                 <FiFacebook className="h-6 w-6" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://twitter.com/shopora"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
+                aria-label="Twitter"
               >
                 <FiTwitter className="h-6 w-6" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/shopora"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
                 <FiInstagram className="h-6 w-6" />
+              </a>
+              <a
+                href="https://linkedin.com/company/shopora"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FiLinkedin className="h-6 w-6" />
+              </a>
+              <a
+                href="https://youtube.com/shopora"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+                aria-label="YouTube"
+              >
+                <FiYoutube className="h-6 w-6" />
               </a>
             </div>
 
