@@ -1679,7 +1679,7 @@ const Footer = () => (
             <FiLinkedin style={styles.socialIcon} />
           </a>
           <a
-            href="https://youtube.com/shopora"
+            href="https://www.youtube.com/watch?v=4HEYK9H_3fg"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.socialLink}
