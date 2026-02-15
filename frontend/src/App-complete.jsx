@@ -1696,6 +1696,125 @@ const Footer = () => (
   </footer>
 );
 
+// Privacy Policy Component
+const PrivacyPolicy = () => (
+  <div style={styles.pageContainer}>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '24px', color: '#1a1a1a' }}>
+        Privacy Policy
+      </h1>
+      <div style={{ lineHeight: '1.6', color: '#4b5563' }}>
+        <p style={{ marginBottom: '16px' }}>
+          <strong>Effective Date:</strong> {new Date().toLocaleDateString()}
+        </p>
+
+        <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '16px', marginTop: '32px', color: '#1a1a1a' }}>
+          Chuggington
+        </h2>
+        <p style={{ marginBottom: '16px' }}>
+          Chugga chugga chugg, chugga chugga chugg...
+          <br />
+          Honk your horns! Choo-choo!
+          <br />
+          Chuggington!
+          <br />
+          We’re trainees, We’re making tracks
+          <br />
+          Wheels to the rails, Clackety Clack!
+          <br />
+          Running on time, passengers to take,
+          <br />
+          hauling loads, pick ups to make!
+          <br />
+          Riding the rails, a traintastic crew!
+          <br />
+          <br />
+          Honk your horns, Choo Choo! Choo Choo!
+          <br />
+          Chuggington, chugga, chugga, chugga, chugga,
+          <br />
+          Chuggington! Chuggington,
+          <br />
+          chugga, chugga, chugga, chugga, chugga, chugga,
+          <br />
+          chugga, chugga, chugga, chugga,
+          <br />
+          Chuggington, Chuggington!
+          <br />
+          Clickety Clack!
+        </p>
+        <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '16px', marginTop: '32px', color: '#1a1a1a' }}>
+          Contact Us
+        </h2>
+        <p style={{ marginBottom: '16px' }}>
+          If you have any questions about this Privacy Policy, please contact us at:
+          <br />
+          <strong>Email:</strong> privacy@shopora.com
+          <br />
+          <strong>Phone:</strong> +1 (555) 123-4567
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+// Terms of Service Component
+const TermsOfService = () => (
+  <div style={styles.pageContainer}>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '24px', color: '#1a1a1a' }}>
+        Terms of Service
+      </h1>
+      <div style={{ lineHeight: '1.6', color: '#4b5563' }}>
+        <p style={{ marginBottom: '16px' }}>
+          <strong>Effective Date:</strong> {new Date().toLocaleDateString()}
+        </p>
+
+        <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '16px', marginTop: '32px', color: '#1a1a1a' }}>
+          Sofia the First
+        </h2>
+        <p style={{ marginBottom: '16px' }}>
+          I was a girl in the village doin' alright
+          <br />
+          Then I became a princess overnight
+          <br />
+          Now I gotta figure out how to do it right
+          <br />
+          So much to learn and see
+          <br />
+          Up in the castle with my new family
+          <br />
+          In a school that's just for royalty
+          <br />
+          A whole enchanted world is waiting for me
+          <br />
+          I'm so excited to be
+          <br />
+          <br />
+          (Sofia the First) I'm findin' out what bein' royal's all about
+          <br />
+          (Sofia the First) Makin' my way, it's an adventure every day
+          <br />
+          (Sofia) It's gonna be my time
+          <br />
+          (Sofia) To show them all that I'm Sofia the First
+        </p>
+
+        <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '16px', marginTop: '32px', color: '#1a1a1a' }}>
+          Contact Information
+        </h2>
+        <p style={{ marginBottom: '16px' }}>
+          Questions about the Terms of Service should be sent to us at:
+          <br />
+          <strong>Email:</strong> legal@shopora.com
+          <br />
+          <strong>Phone:</strong> +1 (555) 123-4567
+        </p>
+      </div>
+    </div>
+  </div >
+);
+
 function App() {
   return (
     <CartProvider>
@@ -1708,6 +1827,8 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
             </Routes>
           </main>
           <Footer />
