@@ -892,7 +892,7 @@ const Home = () => {
     <div>
       <HeroSlider />
       <div style={styles.pageContainer}>
-        <div>
+        <div style={{ marginBottom: '80px' }}>
           <h2 style={styles.sectionTitle}>Featured Products</h2>
           <div style={styles.productGrid}>
             {products.slice(0, 8).map((product) => (
@@ -1575,15 +1575,15 @@ const Footer = () => (
             </div>
             <div style={styles.contactItem}>
               <FiPhone style={styles.contactIcon} />
-              <span>+1 (555) 123-4567</span>
+              <span>+1 (000) 123-4567</span>
             </div>
             <div style={styles.contactItem}>
               <FiMapPin style={styles.contactIcon} />
-              <span>123 Design Street, Creative City, CC 12345</span>
+              <span>123 Street ni Arc, Biringan City, CC Atome</span>
             </div>
             <div style={styles.contactItem}>
               <FiClock style={styles.contactIcon} />
-              <span>Mon-Fri: 9AM-6PM EST</span>
+              <span>Mon-Fri: 9AM-6PM</span>
             </div>
           </div>
         </div>
@@ -1592,15 +1592,6 @@ const Footer = () => (
         <div style={styles.footerSection}>
           <h3 style={styles.footerTitle}>Customer Service</h3>
           <ul style={styles.linkList}>
-            <li style={styles.linkItem}>
-              <Link to="/shipping" style={styles.footerLink}>Shipping & Returns</Link>
-            </li>
-            <li style={styles.linkItem}>
-              <Link to="/size-guide" style={styles.footerLink}>Size Guide</Link>
-            </li>
-            <li style={styles.linkItem}>
-              <Link to="/care" style={styles.footerLink}>Product Care</Link>
-            </li>
             <li style={styles.linkItem}>
               <Link to="/privacy" style={styles.footerLink}>Privacy Policy</Link>
             </li>
@@ -1624,7 +1615,7 @@ const Footer = () => (
                 flex: 1,
                 padding: '12px 16px',
                 borderRadius: '8px',
-                border: '1px solid #d1d5db',
+                border: '2px solid #9ca3af',
                 backgroundColor: '#ffffff',
                 color: '#1a1a1a',
                 fontSize: '14px',
