@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight, FiCheckCircle, FiFacebook, FiTwitter, FiInstagram, FiLinkedin, FiYoutube, FiMail, FiPhone, FiMapPin, FiClock, FiMessageSquare } from 'react-icons/fi';
+import { FiShoppingCart, FiMinus, FiPlus, FiTrash2, FiChevronLeft, FiChevronRight, FiCheckCircle, FiMail, FiPhone, FiMapPin, FiClock, FiMessageSquare } from 'react-icons/fi';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import ProductFilters from './components/ProductFiltersInline.jsx';
 import shoporaLogo from './assets/shopora.png';
 
@@ -357,7 +358,6 @@ const styles = {
   socialLinks: {
     display: 'flex',
     gap: '24px',
-    marginBottom: '24px',
   },
   socialLink: {
     color: '#4b5563',
@@ -1649,7 +1649,7 @@ const Footer = () => (
             style={styles.socialLink}
             aria-label="Facebook"
           >
-            <FiFacebook style={styles.socialIcon} />
+            <FaFacebook style={styles.socialIcon} />
           </a>
           <a
             href="https://twitter.com/shopora"
@@ -1658,7 +1658,7 @@ const Footer = () => (
             style={styles.socialLink}
             aria-label="Twitter"
           >
-            <FiTwitter style={styles.socialIcon} />
+            <FaTwitter style={styles.socialIcon} />
           </a>
           <a
             href="https://instagram.com/shopora"
@@ -1667,7 +1667,7 @@ const Footer = () => (
             style={styles.socialLink}
             aria-label="Instagram"
           >
-            <FiInstagram style={styles.socialIcon} />
+            <FaInstagram style={styles.socialIcon} />
           </a>
           <a
             href="https://linkedin.com/company/shopora"
@@ -1676,7 +1676,7 @@ const Footer = () => (
             style={styles.socialLink}
             aria-label="LinkedIn"
           >
-            <FiLinkedin style={styles.socialIcon} />
+            <FaLinkedin style={styles.socialIcon} />
           </a>
           <a
             href="https://www.youtube.com/watch?v=4HEYK9H_3fg"
@@ -1685,7 +1685,7 @@ const Footer = () => (
             style={styles.socialLink}
             aria-label="YouTube"
           >
-            <FiYoutube style={styles.socialIcon} />
+            <FaYoutube style={styles.socialIcon} />
           </a>
         </div>
         <div style={styles.footerCopyright}>
