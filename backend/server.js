@@ -17,7 +17,8 @@ app.use(compression());
 app.use(cors({
   origin: [
     'https://frontend-bvez9mp52-cheetoezzzs-projects.vercel.app',
-    'https://frontend-six-lime-87.vercel.app'
+    'https://frontend-six-lime-87.vercel.app',
+    'https://shopora-wheat.vercel.app'
   ],
   credentials: true
 }));
