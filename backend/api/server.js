@@ -5,8 +5,8 @@ const helmet = require('helmet');
 const compression = require('compression');
 require('dotenv').config();
 
-const products = require('../routes/products');
-const categories = require('../routes/categories');
+const productRoutes = require('../routes/products');
+const categoryRoutes = require('../routes/categories');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
