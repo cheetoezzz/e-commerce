@@ -860,7 +860,7 @@ const Home = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then(response => response.json())
       .then(data => {
         setProducts(data.products || []);
@@ -1032,7 +1032,7 @@ const Shop = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then(response => response.json())
       .then(data => {
         setProducts(data.products || []);
