@@ -5,8 +5,8 @@ const helmet = require('helmet');
 const compression = require('compression');
 require('dotenv').config();
 
-const productRoutes = require('../routes/products');
-const categoryRoutes = require('../routes/categories');
+const productRoutes = require('./routes/products');
+const categoryRoutes = require('./routes/categories');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -48,13 +48,13 @@ app.use('*', (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((error) => {
-    console.error('Database connection error:', error);
-  });
+// mongoose.connect(process.env.MONGODB_URI)
+//   .then(() => {
+//     console.log('Connected to MongoDB');
+//   })
+//   .catch((error) => {
+//     console.error('Database connection error:', error);
+//   });
 
 // 404 handler
 app.use('*', (req, res) => {

@@ -5,9 +5,148 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react
 import ProductFilters from './components/ProductFiltersInline.jsx';
 import shoporaLogo from './assets/shopora.png';
 
-const PRODUCT_PLACEHOLDER_IMG = 'http://localhost:5000/api/images/placeholder';
+const PRODUCT_PLACEHOLDER_IMG = 'http://localhost:5000/api/images/placeholder'; // Commented out as backend not used
 
 const LOCAL_IMAGES = import.meta.glob('./assets/*.png', { eager: true, import: 'default' });
+
+const mockProducts = [
+  {
+    _id: '1',
+    name: 'Minimalist Desk Lamp',
+    price: 89.99,
+    description: 'A sleek and modern desk lamp with adjustable brightness and color temperature. Perfect for any workspace.',
+    category: { slug: 'lighting' },
+    images: [],
+    stock: 25,
+    featured: true,
+    tags: ['lighting', 'desk', 'modern', 'LED'],
+    specifications: {
+      'Material': 'Aluminum',
+      'Dimensions': '12" x 6" x 18"',
+      'Power': '12W LED',
+      'Color Temperature': '2700K - 6500K'
+    }
+  },
+  {
+    _id: '2',
+    name: 'Wireless Charging Pad',
+    price: 34.99,
+    description: 'Fast wireless charging pad compatible with all Qi-enabled devices. Minimalist design with premium materials.',
+    category: { slug: 'electronics' },
+    images: [],
+    stock: 50,
+    featured: true,
+    tags: ['wireless', 'charging', 'electronics', 'Qi'],
+    specifications: {
+      'Output': '15W Max',
+      'Compatibility': 'Qi-enabled devices',
+      'Material': 'Premium fabric',
+      'Safety': 'Overcharge protection'
+    }
+  },
+  {
+    _id: '3',
+    name: 'Minimalist Coffee Table',
+    price: 299.99,
+    description: 'Clean lines and natural materials define this minimalist coffee table. Perfect centerpiece for modern living rooms.',
+    category: { slug: 'furniture' },
+    images: [],
+    stock: 15,
+    featured: true,
+    tags: ['furniture', 'table', 'modern', 'minimalist'],
+    specifications: {
+      'Material': 'Oak wood',
+      'Dimensions': '48" x 24" x 16"',
+      'Finish': 'Natural oil',
+      'Assembly': 'Required'
+    }
+  },
+  {
+    _id: '4',
+    name: 'Leather Wallet',
+    price: 59.99,
+    description: 'Handcrafted leather wallet with RFID protection. Slim profile with multiple card slots and cash compartment.',
+    category: { slug: 'accessories' },
+    images: [],
+    stock: 40,
+    featured: false,
+    tags: ['wallet', 'leather', 'accessories', 'RFID'],
+    specifications: {
+      'Material': 'Genuine leather',
+      'Dimensions': '4.25" x 3.25" x 0.25"',
+      'Card Slots': '8',
+      'Features': 'RFID protection'
+    }
+  },
+  {
+    _id: '5',
+    name: 'Smart Speaker',
+    price: 129.99,
+    description: 'Premium smart speaker with exceptional sound quality and voice assistant integration. Minimalist aesthetic.',
+    category: { slug: 'electronics' },
+    images: [],
+    stock: 30,
+    featured: true,
+    tags: ['speaker', 'smart', 'audio', 'voice'],
+    specifications: {
+      'Power': '20W',
+      'Connectivity': 'Wi-Fi, Bluetooth',
+      'Voice Assistant': 'Compatible',
+      'Dimensions': '6" x 4" x 4"'
+    }
+  },
+  {
+    _id: '6',
+    name: 'Minimalist Bookshelf',
+    price: 189.99,
+    description: 'Floating bookshelf with clean lines and hidden mounting hardware. Perfect for displaying books and decor.',
+    category: { slug: 'furniture' },
+    images: [],
+    stock: 20,
+    featured: false,
+    tags: ['bookshelf', 'wall', 'floating', 'storage'],
+    specifications: {
+      'Material': 'Bamboo',
+      'Dimensions': '36" x 8" x 6"',
+      'Weight Capacity': '50 lbs',
+      'Installation': 'Wall-mounted'
+    }
+  },
+  {
+    _id: '7',
+    name: 'Ceramic Vase',
+    price: 44.99,
+    description: 'Handcrafted ceramic vase with minimalist design. Perfect for fresh flowers or as a standalone decor piece.',
+    category: { slug: 'accessories' },
+    images: [],
+    stock: 35,
+    featured: false,
+    tags: ['vase', 'ceramic', 'decor', 'handmade'],
+    specifications: {
+      'Material': 'Ceramic',
+      'Dimensions': '8" x 4"',
+      'Color': 'Matte white',
+      'Care': 'Hand wash only'
+    }
+  },
+  {
+    _id: '8',
+    name: 'Floor Lamp',
+    price: 149.99,
+    description: 'Elegant floor lamp with adjustable arm and warm LED lighting. Creates the perfect ambiance for any room.',
+    category: { slug: 'lighting' },
+    images: [],
+    stock: 18,
+    featured: false,
+    tags: ['lamp', 'floor', 'lighting', 'modern'],
+    specifications: {
+      'Height': '64"',
+      'Material': 'Metal and fabric',
+      'Bulb': 'LED included',
+      'Switch': 'Foot pedal'
+    }
+  }
+];
 
 const toSnakeCase = (value) => {
   return String(value || '')
@@ -860,16 +999,9 @@ const Home = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/products`)
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data.products || []);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-        setLoading(false);
-      });
+    // Use mock data instead of API fetch
+    setProducts(mockProducts);
+    setLoading(false);
   }, []);
 
   const openModal = (imageSrc, alt) => {
@@ -1032,16 +1164,9 @@ const Shop = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/products`)
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data.products || []);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-        setLoading(false);
-      });
+    // Use mock data instead of API fetch
+    setProducts(mockProducts);
+    setLoading(false);
   }, []);
 
   const filteredProducts = products.filter(product => {

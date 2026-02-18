@@ -6,28 +6,24 @@ require('dotenv').config();
 const categories = [
   {
     name: 'Electronics',
-    slug: 'electronics',
     description: 'Modern electronics and gadgets',
     image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400',
     sortOrder: 1
   },
   {
     name: 'Furniture',
-    slug: 'furniture',
     description: 'Minimalist furniture for modern living',
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400',
     sortOrder: 2
   },
   {
     name: 'Accessories',
-    slug: 'accessories',
     description: 'Everyday accessories and essentials',
     image: 'https://images.unsplash.com/photo-1524863479829-916d8e77f114?w=400',
     sortOrder: 3
   },
   {
     name: 'Lighting',
-    slug: 'lighting',
     description: 'Modern lighting solutions',
     image: 'https://images.unsplash.com/photo-1513506003901-1e6a226e6d23?w=400',
     sortOrder: 4
